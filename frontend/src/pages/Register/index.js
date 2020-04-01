@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FiArrowLeft } from "react-icons/fi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import api from "../../services/api";
 import "./styles.css";
@@ -29,17 +31,18 @@ export default function Register() {
     try {
       const response = await api.post("ongs", data);
 
-      alert(`Seu ID de acesso: ${response.data.id}`);
+      toast.success(`Seu ID de Acesso: ${response.data.id}`);
 
       history.push("/");
     } catch (err) {
-      alert("Erro no cadastro, tente novamente");
+      toast.error("Erro no cadastro, tente novamente");
     }
   }
 
   return (
     <div className="register-container">
       <div className="content">
+        <ToastContainer />
         <section>
           <img src={LogoImg} alt="Be The Hero" />
 
