@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { FiPower, FiTrash2 } from "react-icons/fi";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import api from "../../services/api";
 
@@ -38,7 +40,7 @@ export default function Profile() {
 
       setIncidents(incidents.filter(incident => incident.id !== id));
     } catch (err) {
-      alert("Erro ao deletar caso, tente novamente");
+      toast.error("Erro ao deletar caso, tente novamente");
     }
   }
 
@@ -50,6 +52,7 @@ export default function Profile() {
 
   return (
     <div className="profile-container">
+      <ToastContainer />
       <header>
         <img src={logoImg} alt="Be The Hero" />
         <span>Bem vindo, {ongName}</span>
